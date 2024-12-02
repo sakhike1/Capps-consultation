@@ -10,7 +10,7 @@ import HeroSection9 from "../sections/HeroSection9";
 import HeroSectionFeedback from '../sections/HeroSectionFeedback'
 import HeroSectionSubscribe from '../sections/HeroSectionSubscribe'
 import Scrollup from '../sections/Scrollup'
-import Partnership from '../sections/partnership'
+
 
 
 
@@ -69,11 +69,7 @@ const Home = () => {
 
 
             </section>
-            <section className='mb-[100px]  '>
-                <Partnership />
-
-
-            </section>
+           
             <section className=''>
                 <Scrollup />
             </section>
