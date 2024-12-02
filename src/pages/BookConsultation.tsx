@@ -57,12 +57,12 @@ export default function BookConsultation() {
   }}
 />
       {/* Optional Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-300 via-blue-500 to-blue-700 opacity-20 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-300 via-blue-500 to-blue-700 opacity-20 "></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Form Section */}
-          <div className="bg-gradient-to-r from-white via-slate-200 to-slate-300 rounded-lg shadow-lg p-6">
+          <div className="bg-gradient-to-r from-white via-slate-200 to-slate-300 rounded-lg shadow-lg p-6 z-10">
             <div className="text-center mb-6">
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 Book a Free Consultation
@@ -78,7 +78,7 @@ export default function BookConsultation() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
                   required
                 />
               </div>
@@ -88,7 +88,7 @@ export default function BookConsultation() {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
                   required
                 />
               </div>
@@ -97,7 +97,7 @@ export default function BookConsultation() {
                   Service Type
                 </label>
                 <select
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
                   required
                 >
                   <option value="">Select a service</option>
@@ -111,7 +111,7 @@ export default function BookConsultation() {
                   Project Description
                 </label>
                 <textarea
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm h-24"
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg   text-sm h-24"
                   required
                 ></textarea>
               </div>
