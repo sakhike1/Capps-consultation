@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+@layer components {
+    .max-container {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    
+    
+}
+
+@layer utilities {
+    .padding {
+        @apply sm:px-16 px-8 sm:py-24 py-12;
+    }
+    
+    .padding-d {
+        @apply sm:px-16 px-8 sm:py-24 py-20;
+    }
+    
+    .padding-x {
+        @apply sm:px-16 px-8;
+    }
+    
+    .padding-y {
+        @apply sm:py-24 py-12;
+    }
+    
+    .padding-l {
+        @apply sm:pl-16 pl-8;
+    }
+    
+    .padding-r {
+        @apply sm:pr-16 pr-8;
+    }
+    
+    .padding-t {
+        @apply sm:pt-24 pt-12;
+    }
+    
+    .padding-b {
+        @apply sm:pb-24 pb-12;
+    }
+    
+    
+}
+
+.heart-pop {
+    animation: pop 0.5s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes float-delay {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delay {
+    animation: float-delay 3s ease-in-out infinite;
+}
