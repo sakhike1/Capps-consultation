@@ -63,13 +63,14 @@ const Testimonials = () => {
         </div>
 
         <div className="mt-6">
-          <button
-            type="button"
-            onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
-            className="px-6 py-3 rounded text-white text-sm tracking-wider font-semibold border border-gray-800 outline-none bg-gray-800 hover:bg-transparent hover:text-gray-800 transition-all duration-300"
-          >
-            Next Testimonial
-          </button>
+        <button
+  type="button"
+  onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
+  className="px-6 py-3 rounded-md text-black text-sm tracking-wider font-semibold border bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-slate-400 via-indigo-100 to-teal-900 hover:bg-transparent hover:text-gray-800 transition-all duration-300"
+>
+  Next Testimonial
+</button>
+
         </div>
       </div>
     </div>

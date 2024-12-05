@@ -1,7 +1,8 @@
 import { Calendar, Clock, Video, MessageSquare } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import {fg} from '../assets/images'
+import fg from '../assets/images/videos/fg.gif';
+
 
 export default function BookConsultation() {
   const canvasRef = useRef(null);

@@ -8,8 +8,9 @@ import HeroSection7 from "../sections/HeroSection7";
 import HeroSection8 from "../sections/HeroSection8";
 import HeroSection9 from "../sections/HeroSection9";
 import HeroSectionFeedback from '../sections/HeroSectionFeedback'
-import HeroSectionSubscribe from '../sections/HeroSectionSubscribe'
 import Scrollup from '../sections/Scrollup'
+import { Subscribe } from './../sections/Subscribe';
+
 
 
 
@@ -74,7 +75,7 @@ const Home = () => {
                 <Scrollup />
             </section>
             <section className=''>
-                <HeroSectionSubscribe />
+                <Subscribe />
 
 
             </section>

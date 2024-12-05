@@ -69,7 +69,7 @@ const HeroHeader1 = () => {
                     </div>
 
                     {/* Text Column */}
-                    <div className="col-span-12 lg:col-span-6 xl:pr-12 sm:text-center lg:text-left flex flex-col items-center lg:items-start">
+                    <div className="col-span-12 mt-20 lg:col-span-6 xl:pr-12 sm:text-center lg:text-left flex flex-col items-center lg:items-start">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl text-black leading-snug font-bold">
                             Innovating the Future of App Development
                         </h2>
