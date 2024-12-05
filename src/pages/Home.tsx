@@ -7,9 +7,9 @@ import HeroSection6 from "../sections/HeroSection6";
 import HeroSection7 from "../sections/HeroSection7";
 import HeroSection8 from "../sections/HeroSection8";
 import HeroSection9 from "../sections/HeroSection9";
-import HeroSectionFeedback from '../sections/HeroSectionFeedback'
 import Scrollup from '../sections/Scrollup'
 import { Subscribe } from './../sections/Subscribe';
+import {Testimonials} from "../components/Testimonials";
 
 
 
@@ -65,8 +65,8 @@ const Home = () => {
 
             </section>
 
-            <section className='mb-[100px]  '>
-                <HeroSectionFeedback />
+            <section className='mb-96 -mt-[400px]'>
+                <Testimonials />
 
 
             </section>
@@ -74,7 +74,7 @@ const Home = () => {
             <section className=''>
                 <Scrollup />
             </section>
-            <section className=''>
+            <section className='-mt-[350px]'>
                 <Subscribe />
 
 
