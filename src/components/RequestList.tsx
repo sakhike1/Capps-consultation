@@ -58,7 +58,7 @@ export default function RequestList() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-500 via-neutral-50 to-zinc-50 rounded-lg shadow-md p-6 hover:shadow-lg scale-75 translate-x-4 skew-y-3 md:transform-none transition-shadow relative"
+            className="bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-100 via-neutral-200 to-transparent rounded-lg shadow-md p-6 hover:shadow-lg scale-75 translate-x-4 skew-y-3 md:transform-none transition-shadow relative"
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-lg font-semibold capitalize">
