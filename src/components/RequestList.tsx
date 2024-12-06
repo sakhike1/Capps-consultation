@@ -17,7 +17,8 @@ export default function RequestList() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Clock className="text-yellow-500" />;
+        return <Clock className="text-white
+        " />;
       case 'in-progress':
         return <RefreshCw className="text-blue-500" />;
       case 'completed':
@@ -57,7 +58,7 @@ export default function RequestList() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, x: -100 }}
-            className="bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-emerald-200 to-yellow-200 rounded-lg shadow-md p-6 hover:shadow-lgscale-75 translate-x-4 skew-y-3 md:transform-none transition-shadow relative"
+            className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-500 via-neutral-50 to-zinc-50 rounded-lg shadow-md p-6 hover:shadow-lg scale-75 translate-x-4 skew-y-3 md:transform-none transition-shadow relative"
           >
             <div className="flex items-center justify-between mb-4">
               <span className="text-lg font-semibold capitalize">

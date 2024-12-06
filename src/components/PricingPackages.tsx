@@ -56,7 +56,7 @@ export default function PricingPackages() {
   };
 
   return (
-    <div className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-400 via-slate-100 to-indigo-200 rounded-xl shadow-lg p-6">
+    <div className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-400 via-slate-100 to-indigo-200 hover:shadow-2xl rounded-xl shadow-lg p-6">
       <h2 className="text-2xl font-bold mb-8 text-gray-800">Available Packages</h2>
       <div className="grid md:grid-cols-3 gap-6">
         {packages.map((pkg, index) => (
@@ -94,8 +94,8 @@ export default function PricingPackages() {
               onClick={() => handlePackageSelect(pkg)}
               className={`w-full py-2 px-4 rounded-lg font-medium transition-colors ${
                 pkg.popular
-                  ? 'bg-white text-blue-600 hover:bg-gray-100'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
+                  ? 'bg-white text-black hover:bg-gray-100'
+                  : 'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-400 via-slate-100 to-indigo-200 text-black hover:shadow-2xl hover:bg-blue-700'
               }`}
             >
               Get Started

@@ -17,7 +17,6 @@ export const TestimonialCard = ({ testimonial, isVisible }: TestimonialCardProps
             className="relative"
         >
             <div className="bg-gradient-to-bl from-stone-100 via-teal-100 to-purple-300 rounded-xl p-8 shadow-lg">
-                <Quote className="w-10 h-10 text-indigo-500 mb-4" />
                 <p className="text-gray-700 text-lg italic mb-6">{testimonial.quote}</p>
                 <div className="flex items-center gap-4">
                     <img

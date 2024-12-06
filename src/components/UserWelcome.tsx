@@ -28,14 +28,15 @@ export default function UserWelcome() {
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <div className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-500 via-neutral-50 to-zinc-50 rounded-xl shadow-lg p-6 mb-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="bg-blue-600 text-white p-3 rounded-full">
+            <div className="bg-black
+             text-white p-3 rounded-full">
               <User className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">
+              <h1 className="text-2xl font-bold text-gray-500">
                 Welcome back, {user?.name}!
               </h1>
               <p className="text-gray-600">
