@@ -1,8 +1,7 @@
 import { Calendar, Clock, Video, MessageSquare } from 'lucide-react';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import fg from '../assets/images/videos/fg.gif';
-
 
 export default function BookConsultation() {
   const canvasRef = useRef(null);
@@ -11,17 +10,33 @@ export default function BookConsultation() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const stars = Array.from({ length: 100 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
       size: Math.random() * 2,
       speed: Math.random() * 0.5 + 0.1,
     }));
+
+    const resizeCanvas = () => {
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+
+      // Recalculate star positions for new canvas size
+      stars.forEach((star) => {
+        star.x = Math.random() * canvas.width / devicePixelRatio;
+        star.y = Math.random() * canvas.height / devicePixelRatio;
+      });
+    };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       stars.forEach((star) => {
         star.y += star.speed;
-        if (star.y > canvas.height) star.y = 0;
+        if (star.y > canvas.height / (window.devicePixelRatio || 1)) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width / (window.devicePixelRatio || 1);
+        }
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fillStyle = 'white';
@@ -30,35 +45,39 @@ export default function BookConsultation() {
       requestAnimationFrame(animate);
     };
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    resizeCanvas();
     animate();
+
+    window.addEventListener('resize', resizeCanvas);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+    };
   }, []);
+
   return (
     <div
       className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden"
     >
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
-{/* Motion background */}
-<motion.div
-  className="absolute inset-0 -z-10"
-  animate={{
-    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-  }}
-  transition={{
-    duration: 10,
-    repeat: Infinity,
-    ease: 'linear',
-  }}
-  style={{
-    backgroundImage:
-      'linear-gradient(135deg, #667eea, #764ba2, #ff6a00, #f9d423)',
-    backgroundSize: '300% 300%',
-  }}
-/>
-      {/* Optional Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-300 via-blue-500 to-blue-700 opacity-20 "></div>
+      {/* Motion background */}
+      <motion.div
+        className="absolute inset-0 -z-10"
+        animate={{
+          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+        style={{
+          backgroundImage:
+            'linear-gradient(135deg, #667eea, #764ba2, #ff6a00, #f9d423)',
+          backgroundSize: '300% 300%',
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -133,37 +152,6 @@ export default function BookConsultation() {
               className="rounded-lg shadow-lg w-full h-auto max-w-md"
             />
           </div>
-        </div>
-
-        {/* Feature Cards Section */}
-        <div className="mt-12 grid md:grid-cols-2 gap-6">
-          {[{
-            Icon: Calendar,
-            title: 'Flexible Scheduling',
-            description: 'Choose a time that works best for you',
-          }, {
-            Icon: Clock,
-            title: '30-Minute Session',
-            description: 'Focused discussion about your needs',
-          }, {
-            Icon: Video,
-            title: 'Video Conference',
-            description: 'Face-to-face virtual meeting',
-          }, {
-            Icon: MessageSquare,
-            title: 'Expert Advice',
-            description: 'Get insights from our specialists',
-          }].map((item, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-r from-slate-200 via-slate-200 to-blue-300 p-6 rounded-lg shadow-md transition-transform duration-300 hover:scale-105 animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <item.Icon className="h-8 w-8 text-blue-600 mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-          ))}
         </div>
       </div>
     </div>

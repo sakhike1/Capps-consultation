@@ -1,4 +1,5 @@
 import { logo } from "../assets/images";
+import { Link } from 'react-router-dom';
 
 const Footer1 = () => {
     return (
@@ -13,9 +14,9 @@ const Footer1 = () => {
                         <p className="py-8 text-sm text-gray-100 lg:max-w-xs text-center lg:text-left">
                             Capps empowers businesses with expert app consultation and development services. Got a project in mind?
                         </p>
-                        <a href="javascript:;" className="py-2.5 px-5 h-9 block w-fit bg-indigo-700 rounded-full shadow-sm text-xs text-white mx-auto transition-all  duration-500 hover:bg-indigo-100 lg:mx-0">
+                        <Link to="/book-consultation" className="py-2.5 px-5 h-9 block hover:shadow-2xl;'[p-0987654321`285.`] w-fit bg-gradient-to-b from-indigo-100 via-sky-100 to-blue-200 rounded-full shadow-sm text-xs text-black mx-auto transition-all  duration-500 hover:bg-indigo-100 lg:mx-0">
                             Contact us
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="lg:mx-auto text-left ">
