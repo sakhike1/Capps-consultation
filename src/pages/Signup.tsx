@@ -96,7 +96,7 @@ export default function Signup() {
           backgroundSize: '300% 300%',
         }}
         />
-      <div className="flex flex-col h-[450px] lg:flex-row bg-gradient-to-r from-slate-50 via-white to-slate-200  shadow-xl max-w-5xl w-full overflow-hidden z-10">
+      <div className="flex flex-col h-[450px] lg:flex-row bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-purple-100 via-slate-50 to-lime-900  shadow-xl max-w-5xl w-full overflow-hidden z-10">
         {/* Form Section */}
         <div className="w-full lg:w-1/2 p-6 flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-left">
@@ -149,12 +149,14 @@ export default function Signup() {
               />
             </div>
 
-            <button
+            <motion.button
               type="submit"
-              className="w-full bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 text-white py-1.5 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r hover:shadow-2xl from-gray-400 via-gray-600 to-blue-800 text-white py-1.5 px-4 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <UserPlus size={20} /> Create Account
-            </button>
+            </motion.button>
           </form>
 
           <p className="mt-4 text-center text-sm text-gray-600">
@@ -162,6 +164,7 @@ export default function Signup() {
             <Link
               to="/login"
               className="text-blue-600 hover:text-blue-700 font-medium"
+              
             >
               Sign In
             </Link>
