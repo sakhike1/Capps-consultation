@@ -59,7 +59,7 @@ const HowItWorks = () => {
     ];
 
     return (
-        <section className="py-20 2xl:py-40 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        <section className="py-20 2xl:py-40 overflow-hidden bg-gradient-to-b from-zinc-100 via-sky-50 to-violet-50">
             <div className="container px-4 mx-auto">
                 <motion.div
                     className="max-w-5xl mx-auto"

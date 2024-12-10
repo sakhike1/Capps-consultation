@@ -63,7 +63,7 @@ const HeroHeader1 = () => {
                         <img
                             src={gifArray[currentGifIndex]}
                             alt="App Development"
-                            className="w-full h-[400px] hover:shadow-2xl shadow-3xl sm:max-w-md md:max-w-lg lg:max-w-xl object-cover rounded-xl"
+                            className="w-full h-[400px] hover:shadow-2xl shadow-3xl sm:max-w-md md:max-w-lg lg:max-w-xl object-fill rounded-xl"
                             style={{ filter: currentFilter }}
                         />
                     </div>

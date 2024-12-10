@@ -47,7 +47,13 @@ const WebDevConsultationSection = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
             >
-                <span className="text-blue-500 font-bold text-lg tracking-wide">
+                <span className="bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))]
+
+from-blue-600
+via-fuchsia-300
+to-orange-50
+bg-clip-text
+text-transparent font-bold text-lg tracking-wide">
                     Your Partner in <span className="text-yellow-500">Web Development</span>
                 </span>
                 <motion.h2

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FloatingElement from '../components/FloatingElement';
 import GlowingParticle from '../components/GlowingParticle';
-import { appdev, appde } from "../assets/images";
+import  appde  from "../assets/images/appde.png";
+import  appdev from  "../assets/images/appdev.png";
 import { Cpu, Code2, Sparkles } from 'lucide-react';
 
 const IntegratedComponent = () => {

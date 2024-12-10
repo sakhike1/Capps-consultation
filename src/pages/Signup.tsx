@@ -1,9 +1,9 @@
-import React, { useState,useRef, useEffect } from 'react';
+import  { useState,useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useAuthStore from '../store/authStore';
-import { fg } from '../assets/images';
+import  fg  from '../assets/images/videos/fg.gif';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -96,7 +96,7 @@ export default function Signup() {
           backgroundSize: '300% 300%',
         }}
         />
-      <div className="flex flex-col h-[450px] lg:flex-row bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-purple-100 via-slate-50 to-lime-900  shadow-xl max-w-5xl w-full overflow-hidden z-10">
+      <div className="flex flex-col h-[450px] lg:flex-row bg-gradient-to-b from-zinc-100 via-sky-50 to-violet-50  shadow-xl max-w-6xl w-full overflow-hidden z-10">
         {/* Form Section */}
         <div className="w-full lg:w-1/2 p-6 flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-left">

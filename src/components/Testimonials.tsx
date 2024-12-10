@@ -53,9 +53,9 @@ export const Testimonials = () => {
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="min-h-screen bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-stone-50 via-gray-200 to-indigo-100  py-20 px-4 sm:px-6 lg:px-8"
+            className="min-h-screen  bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-stone-50 via-gray-200 to-indigo-100  py-20 px-4 sm:px-6 lg:px-8"
         >
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto mt-[80px]">
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -65,7 +65,7 @@ export const Testimonials = () => {
                     <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
                         What Our Clients Say
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-m text-gray-600">
                         Don't just take our word for it - hear from some of our satisfied clients
                     </p>
                 </motion.div>

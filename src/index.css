@@ -95,3 +95,39 @@
 .animate-float-delay {
     animation: float-delay 3s ease-in-out infinite;
 }
+
+@keyframes enhancedBlip {
+    0% {
+        box-shadow: 0 0 15px rgba(66, 153, 225, 0.7), 0 0 30px rgba(66, 153, 225, 0.5);
+        transform: scale(1);
+        background-position: 0% 50%;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(66, 153, 225, 1), 0 0 50px rgba(66, 153, 225, 0.8);
+        transform: scale(1.1);
+        background-position: 100% 50%;
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(232, 5, 5, 0.7), 0 0 30px rgba(66, 153, 225, 0.5);
+        transform: scale(1);
+        background-position: 0% 50%;
+    }
+}
+
+.blipping-effect {
+    animation: enhancedBlip 1.5s infinite ease-in-out;
+    background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+    background-size: 300% 300%;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.blipping-effect:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 30px rgb(225, 66, 143), 0 0 60px rgba(66, 153, 225, 0.9);
+}

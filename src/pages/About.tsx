@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { gifa } from "../assets/images";
+import  gifa  from "../assets/images/videos/gifa.gif";
 import { Link } from 'react-router-dom';
 
 const backgrounds = [
@@ -75,8 +75,8 @@ const AboutPage = () => {
                         transition={{ duration: 0.6 }}
                     >
                         <motion.img
-                            className="w-full object-cover rounded-3xl shadow-2xl"
-                            style={{ height: '640px' }}
+                            className="w-full object-fill rounded-3xl shadow-2xl"
+                            style={{ height: '650px' }}
                             src={gifa}
                             alt="App Development"
                             whileHover={{ scale: 1.02 }}
@@ -138,7 +138,7 @@ const AboutPage = () => {
                                 <div className="flex flex-wrap justify-center gap-4">
                                     <Link to="/book-consultation">
                                     <motion.a
-                                        className="px-8 py-3 shadow-2xl  text-sm font-bold text-white bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 rounded-full  hover:shadow-xl transition-all duration-300"
+                                        className="px-8 py-3 hover:shadow-2xl  text-sm font-bold text-white bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 rounded-full   transition-all duration-300"
                                         href="#"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
@@ -148,7 +148,7 @@ const AboutPage = () => {
                                     </Link>
                                     <Link to="/apps">
                                     <motion.a
-                                        className="px-8 py-3 shadow-2xl text-sm font-bold text-white bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 rounded-full  hover:shadow-xl transition-all duration-300"
+                                        className="px-8 py-3 hover:shadow-2xl text-sm font-bold text-white bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 rounded-full   transition-all duration-300"
                                         href="#"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
