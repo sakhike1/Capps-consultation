@@ -96,7 +96,7 @@ export default function Signup() {
           backgroundSize: '300% 300%',
         }}
         />
-      <div className="flex flex-col h-[450px] lg:flex-row bg-gradient-to-b from-zinc-100 via-sky-50 to-violet-50  shadow-xl max-w-6xl w-full overflow-hidden z-10">
+      <div className="flex flex-col h-[450px] lg:flex-row bg-gradient-to-r from-white via-slate-200 to-slate-300  shadow-xl max-w-6xl w-full overflow-hidden z-10">
         {/* Form Section */}
         <div className="w-full lg:w-1/2 p-6 flex flex-col justify-center">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-left">

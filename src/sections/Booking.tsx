@@ -1,5 +1,5 @@
 import { Calendar, Clock, Video, MessageSquare } from 'lucide-react';
-import React, { useEffect, useRef } from 'react';
+import  { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import fg from '../assets/images/videos/fg.gif';
 
