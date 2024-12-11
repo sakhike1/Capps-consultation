@@ -102,7 +102,7 @@ const Navbar = () => {
                                         </>
                                     ) : (
                                         <li className="font-medium hover:text-gray-900 tracking-tight">
-                                            <Link to="/login">Sign In</Link>
+                                            <Link to="/login">Login</Link>
                                         </li>
                                     )}
                                 </ul>
@@ -212,11 +212,25 @@ const Navbar = () => {
                         {!user && (
                             <div className="flex flex-col justify-end w-full pb-20">
                                 <Link
-                                    className="blipping-effect hover:shadow-2xl px-5 py-3 text-white font-semibold text-center tracking-tight bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-indigo-600 rounded-lg transition duration-200 blipping-effect"
-                                    to="/book-consultation"
-                                >
-                                    {texts[currentTextIndex]}
-                                </Link>
+                                className="relative z-10 blipping-effect hover:shadow-2xl px-5 py-3 
+                                text-white font-semibold text-center tracking-tight 
+                                bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 
+                                hover:bg-indigo-600 rounded-lg transition duration-200 
+                                transform hover:scale-105 
+                                overflow-hidden"
+                                to="/book-consultation"
+                            >
+                                {/* Glass Overlay Effect */}
+                                <div 
+                                    className="absolute inset-0 bg-white bg-opacity-20 
+                                    opacity-0 group-hover:opacity-100 
+                                    transition-opacity duration-500 
+                                    animate-pulse 
+                                    pointer-events-none 
+                                    z-20"
+                                />
+                                {texts[currentTextIndex]}
+                            </Link>
                             </div>
                         )}
                     </div>

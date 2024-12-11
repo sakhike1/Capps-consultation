@@ -14,44 +14,40 @@
         max-width: 1440px;
         margin: 0 auto;
     }
-    
-    
 }
 
 @layer utilities {
     .padding {
         @apply sm:px-16 px-8 sm:py-24 py-12;
     }
-    
+
     .padding-d {
         @apply sm:px-16 px-8 sm:py-24 py-20;
     }
-    
+
     .padding-x {
         @apply sm:px-16 px-8;
     }
-    
+
     .padding-y {
         @apply sm:py-24 py-12;
     }
-    
+
     .padding-l {
         @apply sm:pl-16 pl-8;
     }
-    
+
     .padding-r {
         @apply sm:pr-16 pr-8;
     }
-    
+
     .padding-t {
         @apply sm:pt-24 pt-12;
     }
-    
+
     .padding-b {
         @apply sm:pb-24 pb-12;
     }
-    
-    
 }
 
 .heart-pop {
@@ -71,7 +67,8 @@
 }
 
 @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0);
     }
     50% {
@@ -80,7 +77,8 @@
 }
 
 @keyframes float-delay {
-    0%, 100% {
+    0%,
+    100% {
         transform: translateY(0);
     }
     50% {
@@ -130,4 +128,18 @@
 .blipping-effect:hover {
     transform: scale(1.15);
     box-shadow: 0 0 30px rgb(225, 66, 143), 0 0 60px rgba(66, 153, 225, 0.9);
+}
+
+@keyframes blip {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.blipping-effect {
+    animation: blip 2s infinite;
 }
