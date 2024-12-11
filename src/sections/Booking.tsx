@@ -1,10 +1,11 @@
 import { Calendar, Clock, Video, MessageSquare } from 'lucide-react';
-import  { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import fg from '../assets/images/videos/fg.gif';
 
 export default function BookConsultation() {
   const canvasRef = useRef(null);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -55,10 +56,51 @@ export default function BookConsultation() {
     };
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Show notification
+    setShowNotification(true);
+
+    // Refresh page after 2 seconds to allow notification to be visible
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  };
+
   return (
     <div
       className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden"
     >
+      {/* Notification */}
+      {showNotification && (
+        <div 
+          className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl transition-all duration-300 ease-in-out animate-bounce"
+          role="alert"
+        >
+          <div className="flex items-center">
+            <svg 
+              className="w-6 h-6 mr-4" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth="2" 
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
+              />
+            </svg>
+            <div>
+              <p className="font-bold">Consultation Scheduled Successfully!</p>
+              <p className="text-sm">Our team will contact you soon.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <canvas ref={canvasRef} className="absolute inset-0 z-0" />
 
       {/* Motion background */}
@@ -91,7 +133,7 @@ export default function BookConsultation() {
                 Schedule a call with our experts to discuss your project requirements.
               </p>
             </div>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Full Name
