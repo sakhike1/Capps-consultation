@@ -179,7 +179,7 @@ export default function BookConsultation() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 shadow-lg"
+                className="w-full hover:shadow-2xl bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 shadow-lg"
               >
                 Schedule Consultation
               </button>
