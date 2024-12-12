@@ -1,13 +1,19 @@
 import {motion} from "framer-motion";
 import gifa from "../assets/images/videos/gifa.gif";
 import {Link} from "react-router-dom";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const Section = () => {
+     AOS.init();
     return (
         <div className="bg-black -mt-[400px] font-[sans-serif]">
             <div className="relative overflow-hidden">
                 <div className="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:py-32 lg:px-8">
-                    <div className="relative z-10 text-center lg:text-left">
+                    <div className="relative z-10 text-center lg:text-left" data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500">
                         <h1 className="text-2xl tracking-tight leading-10 font-extrabold text-white sm:text-5xl sm:leading-none md:text-6xl lg:text-7xl">
                             At Capps
                             <br className="xl:hidden" />

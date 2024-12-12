@@ -15,7 +15,7 @@ export default function RequestForm() {
   };
   
   return (
-    <form onSubmit={handleSubmit} className="bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-500 via-neutral-50  to-zinc-50 shadow-2xl rounded-lg  p-6">
+    <form onSubmit={handleSubmit} className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-pink-400 via-slate-100 to-indigo-200 shadow-2xl rounded-lg  p-6">
       <h3 className="text-xl font-semibold mb-4">Create New Request</h3>
       
       <div className="mb-4">
