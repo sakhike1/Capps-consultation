@@ -153,12 +153,12 @@ const Navbar = () => {
                 style={{backgroundColor: "#f3f4f6"}}
             >
                 <div onClick={() => setMobileNavOpen(false)} className="fixed inset-0 bg-gray-800 opacity-80"></div>
-                <nav className="relative z-10 px-9 pt-8 h-full overflow-y-auto" style={{backgroundColor: "#e5e7eb"}}>
+                <nav className="relative z-10 px-9 pt-8 h-full bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-300 via-amber-50 to-orange-200 overflow-y-auto">
                     <div className="flex flex-wrap justify-between h-full">
                         <div className="w-full">
                             <div className="flex items-center justify-between -m-2">
                                 <div className="w-auto p-2">
-                                    <Link className="inline-block hover:shadow-2xl" to="/">
+                                    <Link className="inline-block h-[50px] w-[100px] hover:shadow-2xl" to="/">
                                         <img src={logo} alt="Logo" />
                                     </Link>
                                 </div>

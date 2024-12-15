@@ -48,7 +48,7 @@ const WebDevConsultationSection = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
             >
-                <span className="text-amber-950 font-bold text-lg tracking-wide">
+                <span className="text-b font-bold text-lg tracking-wide">
                     Your Partner in <span className="text-black">Web Development</span>
                 </span>
                 <motion.h2
@@ -70,7 +70,7 @@ const WebDevConsultationSection = () => {
                 <Link to="/about">
                     <motion.a
                         whileHover={{ scale: 1.1 }}
-                        className="inline-block w-full hover:shadow-2xl md:w-auto mb-2 md:mb-0 px-12 py-3 mr-4 text-base font-medium leading-normal bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-blue-700 text-white rounded shadow-lg transition-all duration-300"
+                        className="inline-block w-full hover:shadow-2xl md:w-auto mb-2 md:mb-0 px-12 py-3 mr-4 text-base font-medium leading-normal bg-white text-black rounded shadow-lg transition-all duration-300"
                         href="#"
                     >
                         Learn More
