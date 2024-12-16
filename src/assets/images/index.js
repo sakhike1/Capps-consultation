@@ -22,6 +22,7 @@ import giza from './videos/giza.gif'
 import appde from './appde.png'
 import appdev from './appdev.png'
 import logo2 from './logo2.png'
+import aiv from './videos/aiv.mp4'
 
 
 
@@ -52,7 +53,8 @@ export {
     giza,
     appdev,
     appde,
-    logo2
+    logo2,
+    aiv 
     
 
     

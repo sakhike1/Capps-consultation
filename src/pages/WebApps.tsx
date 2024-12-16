@@ -1,6 +1,6 @@
 import Webapps from "../sections/Webapps";
 import Webapps1 from "../sections/Webapps1";
-
+import Webapps2 from "../sections/Webapps2";
 
 
 
@@ -18,6 +18,10 @@ const Home = () => {
             <section className=''>
                 <Webapps />
             </section>
+            <section className=''>
+                <Webapps2 />
+            </section>
+
 
 
 
