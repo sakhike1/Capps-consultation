@@ -142,9 +142,9 @@ function TestimonialsSlider() {
                                             alt={currentTestimonial.author}
                                         />
                                     </div>
-                                    <div className="w-full text-xs lg:w-8/12 p-6 sm:p-10 md:p-14 bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800">
+                                    <div className="w-full text-xs lg:w-8/12 p-6 sm:p-10 md:p-14 bg-gradient-to-l from-violet-400 via-orange-50 to-stone-50">
                                         <motion.p
-                                            className="mb-4 text-gray-50
+                                            className="mb-4 text-gray-700
                                              text-[13px] mt-20"
                                             initial={{opacity: 0, y: 20}}
                                             animate={{opacity: 1, y: 0}}
