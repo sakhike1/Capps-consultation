@@ -6,17 +6,17 @@ import gifappz from "../assets/images/videos/gifappz.gif";
 const testimonials = [
     {
         id: 1,
-        text: "Capps is a premier web development company that delivers high-quality, scalable web solutions to clients worldwide. Our teams in New York, London, and Tokyo are dedicated to building seamless user experiences.",
+        text: "CappsConsultation specializes in developing transformative web applications that create positive social impact. Our global team collaborates with organizations dedicated to sustainable development, education, and community empowerment through innovative digital solutions.",
         image: gifa,
     },
     {
         id: 2,
-        text: "At Capps, we specialize in building web platforms using the latest technologies, delivering robust and innovative web solutions for our clients in industries such as e-commerce, healthcare, and finance.",
+        text: "At CappsConsultation, we partner with mission-driven organizations to build scalable web platforms that accelerate positive change. From environmental conservation apps to healthcare accessibility solutions, we're committed to technology that serves humanity.",
         image: gifa,
     },
     {
         id: 3,
-        text: "Capps has consistently delivered top-tier web development projects for global brands. Our offices in Los Angeles, Berlin, and Sydney are at the forefront of cutting-edge web technologies.",
+        text: "Our web development expertise helps organizations amplify their global impact. CappsConsultation delivers custom solutions for nonprofits, social enterprises, and forward-thinking companies focused on creating sustainable, positive change in communities worldwide.",
         image: gifappz,
     },
 ];
@@ -51,28 +51,29 @@ function TestimonialsSlider() {
     const currentTestimonial = testimonials[activeSlide];
 
     return (
-        <section className="relative py-8 md:py-16 lg:py-24 bg-coolGray-50 overflow-hidden">
-            <div className="container mx-auto  px-4 max-w-7xl">
-                <div className="mb-12 md:mb-20 flex flex-wrap -mx-4 items-center ">
-                    <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
+        <section className="relative py-4 sm:py-6 md:py-12 lg:py-24 bg-coolGray-50 overflow-hidden mb-16 sm:mb-20 md:mb-24 lg:mb-32">
+            <div className="container mx-auto px-4 max-w-7xl">
+                {/* Header Section */}
+                <div className="mb-6 sm:mb-8 md:mb-12 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0">
+                    <div className="w-full sm:w-1/2 px-2 sm:px-4">
                         <motion.h1
-                            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter"
+                            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter text-center sm:text-left"
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{duration: 0.6}}
-                        ></motion.h1>
+                        >
+                            Web Development for Global Impact
+                        </motion.h1>
                     </div>
-                    <div className="w-full md:w-1/2 px-4 ">
-                        <div className="flex items-center justify-end space-x-4">
-                            {/* Pagination Buttons */}
+                    <div className="w-full sm:w-1/2 px-2 sm:px-4">
+                        <div className="flex items-center justify-center sm:justify-end space-x-3 sm:space-x-4">
                             <motion.button
                                 whileHover={{scale: 1.05}}
                                 whileTap={{scale: 0.95}}
-                                className="h-12 sm:h-16 w-12 sm:w-16 inline-flex items-center justify-center border border-black rounded-full text-black hover:text-white hover:bg-black transition"
+                                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 inline-flex items-center justify-center border border-black rounded-full text-black hover:text-white hover:bg-black transition"
                                 onClick={() => paginate(-1)}
                             >
-                                {/* Left Arrow */}
-                                <svg width="24" height="24" viewBox="0 0 27 27" fill="none">
+                                <svg width="20" height="20" viewBox="0 0 27 27" fill="none">
                                     <path
                                         d="M10.7051 7.12817L4.15732 13.6759L10.7051 20.2237"
                                         stroke="currentColor"
@@ -90,11 +91,10 @@ function TestimonialsSlider() {
                             <motion.button
                                 whileHover={{scale: 1.05}}
                                 whileTap={{scale: 0.95}}
-                                className="h-12 sm:h-16 w-12 sm:w-16 inline-flex items-center justify-center border border-black rounded-full text-black hover:text-white hover:bg-black transition"
+                                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 inline-flex items-center justify-center border border-black rounded-full text-black hover:text-white hover:bg-black transition"
                                 onClick={() => paginate(1)}
                             >
-                                {/* Right Arrow */}
-                                <svg width="24" height="24" viewBox="0 0 27 27" fill="none">
+                                <svg width="20" height="20" viewBox="0 0 27 27" fill="none">
                                     <path
                                         d="M16.2949 7.12817L22.8427 13.6759L16.2949 20.2237"
                                         stroke="currentColor"
@@ -113,7 +113,8 @@ function TestimonialsSlider() {
                     </div>
                 </div>
 
-                <div className="relative h-[500px] overflow-hidden ">
+                {/* Slider Section */}
+                <div className="relative h-[400px] sm:h-[450px] md:h-[500px] overflow-hidden mb-8 sm:mb-12 md:mb-16">
                     <AnimatePresence initial={false} custom={direction} onExitComplete={() => setIsAnimating(false)}>
                         <motion.div
                             key={activeSlide}
@@ -133,19 +134,18 @@ function TestimonialsSlider() {
                             }}
                             className="absolute w-full"
                         >
-                            <div className="bg-white shadow-xl rounded-tr-2xl rounded-br-2xl overflow-hidden hover:shadow-3xl">
+                            <div className="bg-white shadow-xl rounded-lg sm:rounded-tr-2xl sm:rounded-br-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
                                 <div className="flex flex-col lg:flex-row">
-                                    <div className="w-full lg:w-4/12 h-48 sm:h-64 lg:h-auto">
+                                    <div className="w-full lg:w-4/12 h-40 sm:h-48 md:h-56 lg:h-auto">
                                         <img
-                                            className="w-full h-full object-cover rounded-tr-2xl lg:rounded-tr-none lg:rounded-bl-2xl shadow-lg"
+                                            className="w-full h-full object-cover lg:rounded-bl-2xl shadow-lg"
                                             src={currentTestimonial.image}
-                                            alt={currentTestimonial.author}
+                                            alt="Web Development Services"
                                         />
                                     </div>
-                                    <div className="w-full text-xs lg:w-8/12 p-6 sm:p-10 md:p-14 bg-gradient-to-l from-violet-400 via-orange-50 to-stone-50">
+                                    <div className="w-full lg:w-8/12 p-4 sm:p-6 md:p-8 lg:p-12 bg-gradient-to-l from-violet-400 via-orange-50 to-stone-50">
                                         <motion.p
-                                            className="mb-4 text-gray-700
-                                             text-[13px] mt-20"
+                                            className="text-sm sm:text-base md:text-lg text-gray-700 mt-2 sm:mt-4 md:mt-6 lg:mt-8"
                                             initial={{opacity: 0, y: 20}}
                                             animate={{opacity: 1, y: 0}}
                                             transition={{delay: 0.2}}

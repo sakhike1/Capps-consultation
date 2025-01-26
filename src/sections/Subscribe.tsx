@@ -1,8 +1,12 @@
+// src/components/Subscribe.tsx
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gift, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { RotatingText } from './../components/RotatingText';
 import { SubscribeButton } from './../components/SubscribeButton';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase'; // Correct path assumed
 
 export const Subscribe = () => {
   const [email, setEmail] = useState('');
@@ -22,12 +26,20 @@ export const Subscribe = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    
+
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubscribed(true);
-    setIsLoading(false);
+    try {
+      // Add email to Firestore
+      await addDoc(collection(db, 'subscriptions'), {
+        email,
+        timestamp: serverTimestamp()
+      });
+      setIsSubscribed(true);
+    } catch (error) {
+      console.error('Error adding document: ', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -48,7 +60,6 @@ export const Subscribe = () => {
 
         <h2 className="text-gray-800 md:text-5xl text-3xl font-extrabold md:!leading-[55px]">
           Expert Services
-         
           Tailored for Your Success <RotatingText /> 
         </h2>
 

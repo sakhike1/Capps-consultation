@@ -1,12 +1,22 @@
 import { Calendar, Clock, Video, MessageSquare } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase'; // Correct path assumed
 import fg from '../assets/images/videos/fg.gif';
 
 export default function BookConsultation() {
   const canvasRef = useRef(null);
   const [showNotification, setShowNotification] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    serviceType: '',
+    projectDescription: ''
+  });
 
+  // Canvas animation effect code remains the same
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -22,8 +32,6 @@ export default function BookConsultation() {
       canvas.width = window.innerWidth * devicePixelRatio;
       canvas.height = window.innerHeight * devicePixelRatio;
       ctx.scale(devicePixelRatio, devicePixelRatio);
-
-      // Recalculate star positions for new canvas size
       stars.forEach((star) => {
         star.x = Math.random() * canvas.width / devicePixelRatio;
         star.y = Math.random() * canvas.height / devicePixelRatio;
@@ -50,48 +58,59 @@ export default function BookConsultation() {
     animate();
 
     window.addEventListener('resize', resizeCanvas);
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
+    return () => window.removeEventListener('resize', resizeCanvas);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    // Show notification
-    setShowNotification(true);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-    // Refresh page after 2 seconds to allow notification to be visible
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Add submission to Firestore
+      const docRef = await addDoc(collection(db, 'consultations'), {
+        ...formData,
+        timestamp: serverTimestamp(),
+        status: 'pending'
+      });
+
+      setShowNotification(true);
+      // Reset form
+      setFormData({
+        fullName: '',
+        email: '',
+        serviceType: '',
+        projectDescription: ''
+      });
+
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div
-      className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden"
-    >
+    <div className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
       {/* Notification */}
       {showNotification && (
-        <div 
-          className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl transition-all duration-300 ease-in-out animate-bounce"
-          role="alert"
-        >
+        <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-4 rounded-lg shadow-xl transition-all duration-300 ease-in-out animate-bounce">
           <div className="flex items-center">
-            <svg 
-              className="w-6 h-6 mr-4" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth="2" 
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
-              />
+            <svg className="w-6 h-6 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
               <p className="font-bold">Consultation Scheduled Successfully!</p>
@@ -115,8 +134,7 @@ export default function BookConsultation() {
           ease: 'linear',
         }}
         style={{
-          backgroundImage:
-            'linear-gradient(135deg, #667eea, #764ba2, #ff6a00, #f9d423)',
+          backgroundImage: 'linear-gradient(135deg, #667eea, #764ba2, #ff6a00, #f9d423)',
           backgroundSize: '300% 300%',
         }}
       />
@@ -140,7 +158,10 @@ export default function BookConsultation() {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
                   required
                 />
               </div>
@@ -150,7 +171,10 @@ export default function BookConsultation() {
                 </label>
                 <input
                   type="email"
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
                   required
                 />
               </div>
@@ -159,7 +183,10 @@ export default function BookConsultation() {
                   Service Type
                 </label>
                 <select
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg  text-sm"
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm"
                   required
                 >
                   <option value="">Select a service</option>
@@ -173,21 +200,25 @@ export default function BookConsultation() {
                   Project Description
                 </label>
                 <textarea
-                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg   text-sm h-24"
+                  name="projectDescription"
+                  value={formData.projectDescription}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-sm h-24"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full hover:shadow-2xl bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-transform duration-300 transform hover:scale-105 shadow-lg"
+                disabled={isSubmitting}
+                className={`w-full hover:shadow-2xl bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 text-white py-2 px-4 rounded-lg transition-transform duration-300 transform hover:scale-105 shadow-lg ${isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
               >
-                Schedule Consultation
+                {isSubmitting ? 'Scheduling...' : 'Schedule Consultation'}
               </button>
             </form>
           </div>
 
-          {/* Image Section */}
-          <div className="flex items-center justify-center">
+          {/* Image Section - Hidden on small screens, visible from lg breakpoint */}
+          <div className="hidden lg:flex items-center justify-center">
             <img
               src={fg}
               alt="Consultation"

@@ -1,14 +1,27 @@
-import {useState, useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
-import {AnimatePresence, motion} from "framer-motion";
-import  logo2 from "../assets/images/logo2.png";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Brain, CircuitBoard, Zap, Network, X } from 'lucide-react';
+import logo2 from "../assets/images/logo2.png";
 import logo from "../assets/images/logo.png";
 import useAuthStore from "../store/authStore";
 
 const logoVariants = {
-    initial: {opacity: 0, x: -100},
-    animate: {opacity: 1, x: 0},
-    exit: {opacity: 0, x: 100},
+    initial: { opacity: 0, x: -100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 100 },
+};
+
+const navItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: i * 0.1,
+            duration: 0.5,
+        },
+    }),
 };
 
 const texts = ["Contact Us", "What's Your Idea?", "Book Consultation"];
@@ -20,8 +33,8 @@ const Navbar = () => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [currentLogo, setCurrentLogo] = useState(logo);
     const [mobileNavOpen, setMobileNavOpen] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
-    // Rotate logos
     useEffect(() => {
         const logoInterval = setInterval(() => {
             setCurrentLogo((prev) => (prev === logo ? logo2 : logo));
@@ -29,7 +42,6 @@ const Navbar = () => {
         return () => clearInterval(logoInterval);
     }, []);
 
-    // Rotate texts
     useEffect(() => {
         const textInterval = setInterval(() => {
             setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
@@ -38,16 +50,35 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        {path: "/", label: "Home"},
-        {path: "/about", label: "About Us"},
-        {path: "/apps", label: "Mobile Apps"},
-        {path: "/web-apps", label: "Web Apps"},
+        { path: "/", label: "Home", icon: Brain },
+        { path: "/about", label: "About Us", icon: CircuitBoard },
+        { path: "/apps", label: "Mobile Apps", icon: Zap },
+        { path: "/web-apps", label: "Web Apps", icon: Network },
     ];
 
+    // Background circuit animation component
+    const Circuit = () => (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(20)].map((_, i) => (
+                <div
+                    key={i}
+                    className="absolute bg-blue-500/10 w-px h-px"
+                    style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        boxShadow: '0 0 15px 2px rgba(59, 130, 246, 0.5)',
+                        animation: `pulse ${2 + Math.random() * 4}s infinite ${Math.random() * 2}s`,
+                    }}
+                />
+            ))}
+        </div>
+    );
+
     return (
-        <section className="">
+        <section className="relative bg-white">
             <div className="container px-2 mx-auto">
                 <div className="flex items-center justify-between py-5">
+                    {/* Logo Section */}
                     <div className="w-auto">
                         <div className="flex flex-wrap items-center">
                             <div className="w-auto pr-2">
@@ -56,7 +87,7 @@ const Navbar = () => {
                                         <motion.img
                                             key={currentLogo}
                                             src={currentLogo}
-                                            className="h-20 w-40  object-contain ml-[55px]"
+                                            className="h-20  sm:ml-[10px] w-40 object-contain lg:ml-[55px]"
                                             alt="Logo"
                                             variants={logoVariants}
                                             initial="initial"
@@ -74,168 +105,251 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Desktop Navigation */}
                     <div className="w-auto">
                         <div className="flex flex-wrap mr-7 items-center">
                             <div className="w-auto hidden xl:block">
                                 <ul className="flex items-center mr-8">
-                                    {navLinks.map((link) => (
-                                        <li
-                                            key={link.path}
-                                            className="mr-14 hover:shadow-2xl font-medium hover:text-gray-900 tracking-tight"
-                                        >
-                                            <Link
-                                                to={link.path}
-                                                className={location.pathname === link.path ? "text-blue-600" : ""}
+                                    {navLinks.map((link, index) => {
+                                        const Icon = link.icon;
+                                        return (
+                                            <motion.li
+                                                key={link.path}
+                                                custom={index}
+                                                variants={navItemVariants}
+                                                initial="hidden"
+                                                animate="visible"
+                                                className="mr-14 relative"
+                                                onHoverStart={() => setHoveredIndex(index)}
+                                                onHoverEnd={() => setHoveredIndex(null)}
                                             >
-                                                {link.label}
-                                            </Link>
-                                        </li>
-                                    ))}
+                                                <Link
+                                                    to={link.path}
+                                                    className={`flex items-center space-x-2 font-medium tracking-tight
+                                                        ${location.pathname === link.path 
+                                                            ? 'text-blue-600' 
+                                                            : 'hover:text-gray-900'
+                                                        }`}
+                                                >
+                                                    <Icon className={`w-4 h-4 transition-transform duration-300
+                                                        ${hoveredIndex === index ? 'scale-125 rotate-12' : ''}`} 
+                                                    />
+                                                    <span>{link.label}</span>
+                                                </Link>
+                                            </motion.li>
+                                        );
+                                    })}
                                     {user ? (
                                         <>
-                                            <li className="font-medium mr-8 hover:text-gray-900 tracking-tight">
+                                            <motion.li 
+                                                variants={navItemVariants}
+                                                custom={4}
+                                                className="font-medium mr-8 hover:text-gray-900 tracking-tight"
+                                            >
                                                 <span>Welcome, {user.name}</span>
-                                            </li>
-                                            <li className="font-medium hover:text-gray-900 tracking-tight">
+                                            </motion.li>
+                                            <motion.li 
+                                                variants={navItemVariants}
+                                                custom={5}
+                                                className="font-medium hover:text-gray-900 tracking-tight"
+                                            >
                                                 <button onClick={logout}>Sign Out</button>
-                                            </li>
+                                            </motion.li>
                                         </>
                                     ) : (
-                                        <li className="font-medium hover:text-gray-900 tracking-tight">
+                                        <motion.li 
+                                            variants={navItemVariants}
+                                            custom={4}
+                                            className="font-medium hover:text-gray-900 tracking-tight"
+                                        >
                                             <Link to="/login">Login</Link>
-                                        </li>
+                                        </motion.li>
                                     )}
                                 </ul>
                             </div>
                             {!user && (
                                 <div className="w-auto hidden xl:block">
-                                    <div className="inline-block">
-                                        <Link
-                                            className="inline-block px-9 py-2 text-white text-center tracking-tight bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-indigo-600 rounded-md hover:shadow-2xl transition duration-200"
-                                            to="/book-consultation"
-                                        >
-                                            {texts[currentTextIndex]}
-                                        </Link>
-                                    </div>
+                                    <Link
+                                        className="inline-block px-9 py-2 text-white text-center tracking-tight 
+                                            bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 
+                                            hover:shadow-lg hover:shadow-blue-500/25 rounded-md 
+                                            transition-all duration-300 relative overflow-hidden group"
+                                        to="/book-consultation"
+                                    >
+                                        <div className="absolute inset-0 bg-white/20 transform -skew-x-12 
+                                            -translate-x-full group-hover:translate-x-full transition-transform duration-1000" 
+                                        />
+                                        <span className="relative">{texts[currentTextIndex]}</span>
+                                    </Link>
                                 </div>
                             )}
+                            {/* Mobile Menu Button */}
                             <div className="w-auto xl:hidden">
-                                <button onClick={() => setMobileNavOpen(!mobileNavOpen)}>
-                                    <svg
-                                        className="text-indigo-600"
-                                        width="51"
-                                        height="51"
-                                        viewBox="0 0 56 56"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <rect width="56" height="56" rx="28" fill="currentColor"></rect>
-                                        <path
-                                            d="M37 32H19M37 24H19"
-                                            stroke="white"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        ></path>
-                                    </svg>
-                                </button>
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    onClick={() => setMobileNavOpen(!mobileNavOpen)}
+                                >
+    <div className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-yellow-700 via-stone-400 to-indigo-600 rounded-full w-14 h-14 flex items-center justify-center">
+    <svg
+        className="fill-current text-white"
+        width="28"
+        height="28"
+        viewBox="0 0 56 56"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path
+            d="M37 32H19M37 24H19"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        ></path>
+    </svg>
+</div>
+
+
+                                </motion.button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Mobile Navigation */}
-            <div
-                className={`fixed top-0 left-0 bottom-0 w-4/5 sm:max-w-xs z-50 transition-transform transform ${
-                    mobileNavOpen ? "translate-x-0" : "-translate-x-full"
-                }`}
-                style={{backgroundColor: "#f3f4f6"}}
-            >
-                <div onClick={() => setMobileNavOpen(false)} className="fixed inset-0 bg-gray-800 opacity-80"></div>
-                <nav className="relative z-10 px-9 pt-8 h-full bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gray-300 via-amber-50 to-orange-200 overflow-y-auto">
-                    <div className="flex flex-wrap justify-between h-full">
-                        <div className="w-full">
-                            <div className="flex items-center justify-between -m-2">
-                                <div className="w-auto p-2">
-                                    <Link className="inline-block h-[50px] w-[100px] hover:shadow-2xl" to="/">
-                                        <img src={logo} alt="Logo" />
-                                    </Link>
-                                </div>
-                                <div className="w-auto p-2">
-                                    <button onClick={() => setMobileNavOpen(false)}>
-                                        <svg
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
+            {/* Enhanced Mobile Navigation */}
+            <AnimatePresence>
+                {mobileNavOpen && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.7 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileNavOpen(false)}
+                            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+                        />
+                        
+                        <motion.nav
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", stiffness: 100 }}
+                            className="fixed top-0 left-0 bottom-0 w-4/5 sm:max-w-xs z-50 bg-slate-900"
+                        >
+                            {/* Circuit Animation Background */}
+                            <Circuit />
+                            
+                            <div className="relative h-full overflow-hidden">
+                                {/* Glass effect overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-purple-500/10 backdrop-blur-sm" />
+                                
+                                <div className="relative z-10 h-full flex flex-col p-6">
+                                    {/* Header */}
+                                    <div className="flex justify-between items-center mb-8">
+                                        <motion.img
+                                            src={currentLogo}
+                                            alt="Logo"
+                                            className="h-12 w-auto"
+                                            initial={{ opacity: 0, scale: 0.5 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ duration: 0.5 }}
+                                        />
+                                        <motion.button
+                                            whileHover={{ rotate: 90 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            onClick={() => setMobileNavOpen(false)}
+                                            className="p-2 hover:bg-white/10 rounded-full transition-colors"
                                         >
-                                            <path
-                                                d="M6 18L18 6M6 6L18 18"
-                                                stroke="#111827"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            ></path>
-                                        </svg>
-                                    </button>
+                                            <X className="w-6 h-6 text-white" />
+                                        </motion.button>
+                                    </div>
+
+                                    {/* Navigation Links */}
+                                    <div className="space-y-4">
+                                        {navLinks.map((link, i) => {
+                                            const Icon = link.icon;
+                                            return (
+                                                <motion.div
+                                                    key={link.path}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: i * 0.1 }}
+                                                >
+                                                    <Link
+                                                        to={link.path}
+                                                        onClick={() => setMobileNavOpen(false)}
+                                                        className={`flex items-center space-x-4 p-3 rounded-lg transition-all
+                                                            ${location.pathname === link.path 
+                                                                ? 'bg-blue-500/20 text-blue-400' 
+                                                                : 'text-white hover:bg-white/10'}`}
+                                                    >
+                                                        <Icon className="w-5 h-5" />
+                                                        <span className="font-medium">{link.label}</span>
+                                                    </Link>
+                                                </motion.div>
+                                            );
+                                        })}
+                                    </div>
+
+                                    {/* User Section */}
+                                    <div className="mt-auto space-y-4">
+                                        {user ? (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.4 }}
+                                                className="space-y-4"
+                                            >
+                                                <p className="text-white/80">Welcome, {user.name}</p>
+                                                <button
+                                                    onClick={() => {
+                                                        logout();
+                                                        setMobileNavOpen(false);
+                                                    }}
+                                                    className="w-full px-4 py-2 rounded-lg bg-red-500/20 text-red-400 
+                                                        hover:bg-red-500/30 transition-colors"
+                                                >
+                                                    Sign Out
+                                                </button>
+                                            </motion.div>
+                                        ) : (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.4 }}
+                                                className="space-y-4"
+                                            >
+                                                <Link
+                                                    to="/login"
+                                                    onClick={() => setMobileNavOpen(false)}
+                                                    className="block px-4 py-2 text-center text-white bg-white/10 
+                                                        rounded-lg hover:bg-white/20 transition-colors"
+                                                >
+                                                    Sign In
+                                                </Link>
+                                                <Link
+                                                    to="/book-consultation"
+                                                    onClick={() => setMobileNavOpen(false)}
+                                                    className="block px-4 py-3 text-center text-white 
+                                                        bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg
+                                                        hover:shadow-lg hover:shadow-blue-500/25 
+                                                        transition-all duration-300
+                                                        relative overflow-hidden group"
+                                                >
+                                                    <div className="absolute inset-0 bg-white/20 transform -skew-x-12 
+                                                        -translate-x-full group-hover:translate-x-full transition-transform duration-1000" 
+                                                    />
+                                                    <span className="relative">{texts[currentTextIndex]}</span>
+                                                </Link>
+                                            </motion.div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="flex flex-col justify-center py-16 w-full">
-                            <ul>
-                                {navLinks.map((link) => (
-                                    <li
-                                        key={link.path}
-                                        className="mb-6 font-medium hover:shadow-2xl hover:text-gray-900 tracking-tight"
-                                    >
-                                        <Link to={link.path}>{link.label}</Link>
-                                    </li>
-                                ))}
-                                {user ? (
-                                    <>
-                                        <li className="mb-6 font-medium hover:text-gray-900 tracking-tight">
-                                            <span>Welcome, {user.name}</span>
-                                        </li>
-                                        <li className="font-medium hover:text-gray-900 hover:shadow-2xl tracking-tight">
-                                            <button onClick={logout}>Sign Out</button>
-                                        </li>
-                                    </>
-                                ) : (
-                                    <li className="font-medium mb-6 hover:text-gray-900 hover:shadow-2xl tracking-tight">
-                                        <Link to="/login">Sign In</Link>
-                                    </li>
-                                )}
-                            </ul>
-                        </div>
-                        {!user && (
-                            <div className="flex flex-col justify-end w-full pb-20">
-                                <Link
-                                className="relative z-10 blipping-effect hover:shadow-2xl px-5 py-3 
-                                text-white font-semibold text-center tracking-tight 
-                                bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 
-                                hover:bg-indigo-600 rounded-lg transition duration-200 
-                                transform hover:scale-105 
-                                overflow-hidden"
-                                to="/book-consultation"
-                            >
-                                {/* Glass Overlay Effect */}
-                                <div 
-                                    className="absolute inset-0 bg-white bg-opacity-20 
-                                    opacity-0 group-hover:opacity-100 
-                                    transition-opacity duration-500 
-                                    animate-pulse 
-                                    pointer-events-none 
-                                    z-20"
-                                />
-                                {texts[currentTextIndex]}
-                            </Link>
-                            </div>
-                        )}
-                    </div>
-                </nav>
-            </div>
+                        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

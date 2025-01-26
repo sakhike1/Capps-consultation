@@ -1,84 +1,130 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
- // Make sure to create this CSS file
+import { Code2, Rocket, Globe, ArrowRight, Sparkles } from 'lucide-react';
+
+const floatingIconVariants = {
+  initial: { opacity: 0, scale: 0.5 },
+  animate: {
+    opacity: [0.5, 1, 0.5],
+    scale: [1, 1.2, 1],
+    rotate: [0, 10, -10, 0],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
 
 const WebDevConsultationSection = () => {
-    return (
-        <section className="relative pb-20 bg-gradient-to-b from-white to-gray-100 overflow-hidden animated-background">
-            {/* Floating and Rotating SVG Icons */}
-            <motion.svg
-                initial={{ opacity: 0, y: -30 }}
-                animate={{
-                    opacity: 1,
-                    y: [0, 10, 0],
-                    rotate: [0, 15, -15, 0]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="hidden lg:block lg:absolute top-0 left-0 mt-32"
-                width="100"
-                height="100"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-            >
-                <circle cx="12" cy="12" r="10" stroke="blue" strokeWidth="2" fill="transparent" />
-            </motion.svg>
+  return (
+    <section className="relative py-8 sm:py-12 md:py-16 bg-gradient-to-br from-white via-gray-50 to-blue-50 overflow-hidden">
+      {/* Decorative background elements - Adjusted positions */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-10 left-10 w-56 h-56 sm:w-64 sm:h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
+        <div className="absolute top-20 right-10 w-56 h-56 sm:w-64 sm:h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
+        <div className="absolute -bottom-4 left-20 w-56 h-56 sm:w-64 sm:h-64 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000" />
+      </div>
 
-            <motion.svg
-                initial={{ opacity: 0, y: 30 }}
-                animate={{
-                    opacity: 1,
-                    y: [0, -10, 0],
-                    rotate: [0, -20, 20, 0]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="hidden lg:block lg:absolute bottom-0 right-0 mb-20"
-                width="100"
-                height="100"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-            >
-                <rect x="4" y="4" width="16" height="16" stroke="orange" strokeWidth="2" fill="transparent" />
-            </motion.svg>
+      {/* Floating Icons - Adjusted positions */}
+      <motion.div
+        variants={floatingIconVariants}
+        initial="initial"
+        animate="animate"
+        className="hidden lg:block absolute top-16 left-20 text-blue-500"
+      >
+        <Code2 size={32} />
+      </motion.div>
 
-            <motion.div
-                className="relative container pt-12 px-4 mx-auto text-center"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-            >
-                <span className="text-b font-bold text-lg tracking-wide">
-                    Your Partner in <span className="text-black">Web Development</span>
-                </span>
-                <motion.h2
-                    initial={{ y: -50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="mt-8 mb-8 lg:mb-12 text-4xl lg:text-5xl font-semibold font-heading text-gray-800"
-                >
-                    Maximize Your Online Presence Every Day
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.7, duration: 0.9 }}
-                    className="max-w-3xl mx-auto mb-8 lg:mb-12 text-[13px] text-gray-600"
-                >
-                    Our tailored web development solutions ensure seamless digital experiences, helping you build a captivating brand that resonates with your audience. We integrate cutting-edge technologies to give you the edge you need.
-                </motion.p>
-                <Link to="/about">
-                    <motion.a
-                        whileHover={{ scale: 1.1 }}
-                        className="inline-block w-full hover:shadow-2xl md:w-auto mb-2 md:mb-0 px-12 py-3 mr-4 text-base font-medium leading-normal bg-white text-black rounded shadow-lg transition-all duration-300"
-                        href="#"
-                    >
-                        Learn More
-                    </motion.a>
-                </Link>
-            </motion.div>
-        </section>
-    );
+      <motion.div
+        variants={floatingIconVariants}
+        initial="initial"
+        animate="animate"
+        className="hidden lg:block absolute top-24 right-32 text-purple-500"
+      >
+        <Globe size={32} />
+      </motion.div>
+
+      <motion.div
+        variants={floatingIconVariants}
+        initial="initial"
+        animate="animate"
+        className="hidden lg:block absolute bottom-16 left-1/4 text-pink-500"
+      >
+        <Rocket size={32} />
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="relative z-10 container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-4xl mx-auto"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm mb-4 sm:mb-6"
+          >
+            <Sparkles className="w-4 h-4 text-blue-500" />
+            <span className="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Transforming Ideas into Digital Reality
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-900 bg-clip-text text-transparent"
+          >
+            Maximize Your Online Presence Every Day
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed"
+          >
+            Our tailored web development solutions ensure seamless digital experiences, 
+            helping you build a captivating brand that resonates with your audience. 
+            We integrate cutting-edge technologies to give you the edge you need.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Link to="/about" className="w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                Learn More
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
+            
+            <Link to="/book-consultation" className="w-full sm:w-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-l from-purple-400 via-pink-100 to-blue-900 backdrop-blur-sm text-gray-800 rounded-full font-medium border border-gray-200 hover:bg-white hover:shadow-blue-500/40 transition-all duration-300"
+              >
+                Get Started
+              </motion.button>
+            </Link>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
 };
 
 export default WebDevConsultationSection;

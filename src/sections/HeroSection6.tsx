@@ -66,18 +66,16 @@ const Team19 = () => {
 
                 <div className="col-span-6 lg:col-span-3 lg:order-3 flex flex-col items-start">
                     <h1 className="text-3xl m-2 text-left leading-tight text-black md:text-[45px] font-bold">
-                        Air gathering make <br /> wherein sixth <br /> moved
+                        Welcome to <br /> Capps Consultation <br /> Your App Development Partner
                     </h1>
                     <p className="opacity-80 text-black text-[13px] text-left lg:pr-12 my-6">
-                        Was multiply divided made fruitful blessed moving there his
-                        yielding likeness. Lesser moveth abundantly appear life image
-                        male seed.
+                        At Capps Consultation, we specialize in creating innovative and efficient app solutions tailored to your business needs. Our team of experts is dedicated to delivering high-quality applications that drive success.
                     </p>
                     <Link
                         className="block hover:shadow-2xl lg:inline-block px-5 py-3 lg:mr-3 mb-3 lg:mb-0 text-sm text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white font-semibold rounded transition duration-200 w-full lg:w-auto"
                         to="/web-apps"
                     >
-                        Track your performance
+                        Discover Our Services
                     </Link>
                 </div>
             </div>

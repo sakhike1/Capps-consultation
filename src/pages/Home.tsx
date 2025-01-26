@@ -10,6 +10,8 @@ import HeroSection9 from "../sections/HeroSection9";
 import Scrollup from "../sections/Scrollup";
 import {Subscribe} from "./../sections/Subscribe";
 import {Testimonials} from "../components/Testimonials";
+import Workedwith from "../components/Workedwith";
+
 
 const Home = () => {
     return (
@@ -43,14 +45,17 @@ const Home = () => {
                 <HeroSection9 />
             </section>
 
-            <section className="mb-96 -mt-[400px]">
+            <section className=" mb-96 -mt-[500px]">
                 <Testimonials />
             </section>
 
             <section className="">
                 <Scrollup />
             </section>
-            <section className="-mt-[350px]">
+            <section className="-mt-[500px]">
+                <Workedwith />
+            </section>
+            <section className="">
                 <Subscribe />
             </section>
         </>
