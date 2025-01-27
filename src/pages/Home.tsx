@@ -9,7 +9,7 @@ import HeroSection8 from "../sections/HeroSection8";
 import HeroSection9 from "../sections/HeroSection9";
 import Scrollup from "../sections/Scrollup";
 import {Subscribe} from "./../sections/Subscribe";
-import {Testimonials} from "../components/Testimonials";
+import Testimonials from "../components/Testimonials";
 import Workedwith from "../components/Workedwith";
 
 
@@ -45,14 +45,14 @@ const Home = () => {
                 <HeroSection9 />
             </section>
 
-            <section className=" mb-96 -mt-[500px]">
+            <section className=" mb-[300px] -mt-[500px]">
                 <Testimonials />
             </section>
 
             <section className="">
                 <Scrollup />
             </section>
-            <section className="-mt-[500px]">
+            <section className="-mt-[300px] ">
                 <Workedwith />
             </section>
             <section className="">

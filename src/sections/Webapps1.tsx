@@ -16,17 +16,33 @@ const floatingIconVariants = {
   }
 };
 
+const buttonHoverVariants = {
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  },
+  tap: {
+    scale: 0.95,
+    transition: {
+      duration: 0.1
+    }
+  }
+};
+
 const WebDevConsultationSection = () => {
   return (
     <section className="relative py-8 sm:py-12 md:py-16 bg-gradient-to-br from-white via-gray-50 to-blue-50 overflow-hidden">
-      {/* Decorative background elements - Adjusted positions */}
+      {/* Decorative background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-10 left-10 w-56 h-56 sm:w-64 sm:h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob" />
         <div className="absolute top-20 right-10 w-56 h-56 sm:w-64 sm:h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000" />
         <div className="absolute -bottom-4 left-20 w-56 h-56 sm:w-64 sm:h-64 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000" />
       </div>
 
-      {/* Floating Icons - Adjusted positions */}
+      {/* Floating Icons */}
       <motion.div
         variants={floatingIconVariants}
         initial="initial"
@@ -102,22 +118,40 @@ const WebDevConsultationSection = () => {
           >
             <Link to="/about" className="w-full sm:w-auto">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 flex items-center justify-center gap-2"
+                variants={buttonHoverVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="group relative w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-medium shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 overflow-hidden"
               >
-                Learn More
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative flex items-center justify-center gap-2 text-white">
+                  Learn More
+                  <motion.span
+                    className="inline-block"
+                    animate={{ x: [0, 2, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.span>
+                </span>
               </motion.button>
             </Link>
             
             <Link to="/book-consultation" className="w-full sm:w-auto">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto px-6 py-3 bg-gradient-to-l from-purple-400 via-pink-100 to-blue-900 backdrop-blur-sm text-gray-800 rounded-full font-medium border border-gray-200 hover:bg-white hover:shadow-blue-500/40 transition-all duration-300"
+                variants={buttonHoverVariants}
+                whileHover="hover"
+                whileTap="tap"
+                className="group relative w-full sm:w-auto px-6 py-3 rounded-full font-medium border border-gray-200 transition-all duration-300 overflow-hidden"
               >
-                Get Started
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-purple-300 via-pink-100 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <span className="relative bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-purple-700 transition-all duration-300">
+                  Get Started
+                </span>
               </motion.button>
             </Link>
           </motion.div>

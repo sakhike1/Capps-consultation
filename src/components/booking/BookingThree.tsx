@@ -12,7 +12,7 @@ import {
 
 const AIAppCreationJourney = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+  const [direction, setDirection] = useState(1);
 
   const appCreationSteps = [
     {
@@ -84,7 +84,6 @@ const AIAppCreationJourney = () => {
     })
   };
 
-  // Background animation elements
   const CircuitLine = ({ delay = 0, top, left, width }) => (
     <motion.div
       className="absolute bg-gradient-to-r from-blue-500/10 to-purple-500/10"
@@ -122,14 +121,14 @@ const AIAppCreationJourney = () => {
         />
       ))}
 
-      <div className="relative z-20 min-h-screen w-full flex flex-col items-center justify-center p-8">
+      <div className="relative z-20 min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="w-full max-w-4xl"
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -138,7 +137,7 @@ const AIAppCreationJourney = () => {
               <Sparkles className="w-4 h-4 text-blue-400" />
               <span className="text-black text-sm font-medium">AI-Powered Process</span>
             </motion.div>
-            <h1 className="text-4xl font-bold text-white mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               AI App Creation Journey
             </h1>
           </div>
@@ -156,7 +155,7 @@ const AIAppCreationJourney = () => {
               transition={{ duration: 0.5 }}
             />
 
-            <div className="relative p-8">
+            <div className="relative p-4 sm:p-8">
               <AnimatePresence initial={false} mode="wait" custom={direction}>
                 <motion.div
                   key={activeStep}
@@ -170,7 +169,7 @@ const AIAppCreationJourney = () => {
                     stiffness: 300,
                     damping: 30
                   }}
-                  className="flex items-center gap-8"
+                  className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-center sm:text-left"
                 >
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -181,7 +180,7 @@ const AIAppCreationJourney = () => {
                   </motion.div>
 
                   <div className="flex-grow">
-                    <h2 className="text-2xl font-semibold text-white mb-2">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
                       {appCreationSteps[activeStep].title}
                     </h2>
                     <p className="text-blue-200 mb-2">
@@ -194,7 +193,7 @@ const AIAppCreationJourney = () => {
                 </motion.div>
               </AnimatePresence>
 
-              <div className="flex justify-center gap-2 mt-8">
+              <div className="flex justify-center gap-2 mt-6 sm:mt-8">
                 {appCreationSteps.map((_, index) => (
                   <motion.div
                     key={index}
@@ -210,12 +209,12 @@ const AIAppCreationJourney = () => {
                 ))}
               </div>
 
-              <div className="flex justify-center gap-4 mt-8">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
                 <motion.button
                   onClick={handlePrevStep}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+                  className="w-full sm:w-auto bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
                 >
                   <ArrowRight size={20} className="rotate-180" />
                   <span>Previous</span>
@@ -224,7 +223,7 @@ const AIAppCreationJourney = () => {
                   onClick={handleNextStep}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-shadow"
                 >
                   <span>Next</span>
                   <ArrowRight size={20} />
