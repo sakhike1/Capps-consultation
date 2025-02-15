@@ -80,7 +80,7 @@ const HeroHeader1 = () => {
                         {/* Button */}
                         <div className="mt-6 w-full sm:w-auto lg:w-full">
                             <Link
-                                className="block hover:shadow-2xl lg:inline-block px-5 py-3 mb-3 lg:mb-0 text-[12px] text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white  rounded transition duration-200 font-inter w-full sm:w-auto"
+                                className="block hover:shadow-2xl lg:inline-block px-5 py-3 mb-3 lg:mb-0 text-[12px] text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white  rounded-full transition duration-200 font-inter w-full sm:w-auto"
                                 to="/book-consultation"
                             >
                                 Start Your Project

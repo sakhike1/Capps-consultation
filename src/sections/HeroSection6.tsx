@@ -72,7 +72,7 @@ const Team19 = () => {
                         At Capps Consultation, we specialize in creating innovative and efficient app solutions tailored to your business needs. Our team of experts is dedicated to delivering high-quality applications that drive success.
                     </p>
                     <Link
-                        className="block hover:shadow-2xl lg:inline-block px-5 py-3 lg:mr-3 mb-3 lg:mb-0 text-sm text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white font-semibold rounded transition duration-200 w-full lg:w-auto"
+                        className="block hover:shadow-2xl lg:inline-block px-5 py-3 lg:mr-3 mb-3 lg:mb-0 text-sm text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white font-semibold rounded-full transition duration-200 w-full lg:w-auto"
                         to="/web-apps"
                     >
                         Discover Our Services

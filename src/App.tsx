@@ -10,6 +10,7 @@ import WebApps from './pages/WebApps';
 import BookConsultation from './pages/BookConsultation';
 import Navbar from './components/Navbar';
 import useAuthStore from './store/authStore';
+import Scrollup from "./sections/Scrollup";
 import HeroSectionFooter from "./sections/HeroSectionFooter";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
       </div>
 
       <section className="">
+        <Scrollup />
         <HeroSectionFooter />
       </section>
     </BrowserRouter>

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Brain, CircuitBoard, Zap, Network, X } from 'lucide-react';
 import logo2 from "../assets/images/logo2.png";
 import logo from "../assets/images/logo.png";
+import gifa from "../assets/images/videos/gifa.gif";
 import useAuthStore from "../store/authStore";
 
 const logoVariants = {
@@ -87,7 +88,7 @@ const Navbar = () => {
                                         <motion.img
                                             key={currentLogo}
                                             src={currentLogo}
-                                            className="h-20  sm:ml-[10px] w-40 object-contain lg:ml-[55px]"
+                                            className="h-20 sm:ml-[10px] w-40 object-contain lg:ml-[55px]"
                                             alt="Logo"
                                             variants={logoVariants}
                                             initial="initial"
@@ -154,16 +155,32 @@ const Navbar = () => {
                                                 custom={5}
                                                 className="font-medium hover:text-gray-900 tracking-tight"
                                             >
-                                                <button onClick={logout}>Sign Out</button>
+                                                <button 
+                                                    onClick={logout} 
+                                                    className="rounded px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                                                >
+                                                    Sign Out
+                                                </button>
                                             </motion.li>
                                         </>
                                     ) : (
                                         <motion.li 
                                             variants={navItemVariants}
                                             custom={4}
-                                            className="font-medium hover:text-gray-900 tracking-tight"
+                                            className=" hover:text-gray-900  tracking-tight"
                                         >
-                                            <Link to="/login">Login</Link>
+                                            <Link 
+                                                to="/login" 
+                                                className="inline-block px-9 py-2 text-white text-center tracking-tight 
+                                            bg-gradient-to-tr from-rose-700 via-sky-700 to-indigo-50 
+                                            hover:shadow-lg hover:shadow-blue-500/25 rounded-full 
+                                            transition-all duration-300 relative overflow-hidden group"
+                                            >
+                                                Login
+                                                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 
+                                            -translate-x-full group-hover:translate-x-full transition-transform duration-1000" 
+                                        />
+                                            </Link>
                                         </motion.li>
                                     )}
                                 </ul>
@@ -171,9 +188,9 @@ const Navbar = () => {
                             {!user && (
                                 <div className="w-auto hidden xl:block">
                                     <Link
-                                        className="inline-block px-9 py-2 text-white text-center tracking-tight 
-                                            bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 
-                                            hover:shadow-lg hover:shadow-blue-500/25 rounded-md 
+                                        className="inline-block px-9 py-2 text-center border tracking-tight 
+                                            text-sm text-center font-semibold text-black hover:text-black border border-gray-700 hover:border-gray-700 
+                                            hover:shadow-lg hover:shadow-blue-500/25 rounded-full 
                                             transition-all duration-300 relative overflow-hidden group"
                                         to="/book-consultation"
                                     >
@@ -191,25 +208,23 @@ const Navbar = () => {
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => setMobileNavOpen(!mobileNavOpen)}
                                 >
-    <div className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-yellow-700 via-stone-400 to-indigo-600 rounded-full w-14 h-14 flex items-center justify-center">
-    <svg
-        className="fill-current text-white"
-        width="28"
-        height="28"
-        viewBox="0 0 56 56"
-        xmlns="http://www.w3.org/2000/svg"
-    >
-        <path
-            d="M37 32H19M37 24H19"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-        ></path>
-    </svg>
-</div>
-
-
+                                    <div className="bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-yellow-700 via-stone-400 to-indigo-600 rounded-full w-14 h-14 flex items-center justify-center">
+                                        <svg
+                                            className="fill-current text-white"
+                                            width="28"
+                                            height="28"
+                                            viewBox="0 0 56 56"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M37 32H19M37 24H19"
+                                                stroke="white"
+                                                strokeWidth="1.5"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            ></path>
+                                        </svg>
+                                    </div>
                                 </motion.button>
                             </div>
                         </div>
@@ -234,7 +249,7 @@ const Navbar = () => {
                             animate={{ x: 0 }}
                             exit={{ x: "-100%" }}
                             transition={{ type: "spring", stiffness: 100 }}
-                            className="fixed top-0 left-0 bottom-0 w-4/5 sm:max-w-xs z-50 bg-slate-900"
+                            className="fixed top-0 left-0 bottom-0 w-4/5 sm:max-w-xs z-50 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-rose-300 via-slate-600 to-sky-950"
                         >
                             {/* Circuit Animation Background */}
                             <Circuit />
@@ -290,6 +305,22 @@ const Navbar = () => {
                                             );
                                         })}
                                     </div>
+
+                                    {/* Insert the GIF here for mobile navigation */}
+                                    <motion.div
+                                        className="my-4" // Add margin for spacing
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        <motion.img
+                                            src={gifa}
+                                            alt="Animated GIF"
+                                            className=" max-w-[300px] mx-auto rounded-lg shadow-lg h-[200px] w-[400px]" // Adjust size and styling as needed
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    </motion.div>
 
                                     {/* User Section */}
                                     <div className="mt-auto space-y-4">

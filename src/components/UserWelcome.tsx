@@ -28,7 +28,7 @@ export default function UserWelcome() {
 
   return (
     <>
-      <div className="bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-cyan-100 via-red-50 to-neutral-950 rounded-xl shadow-lg p-6 mb-8">
+      <div className="border border-gray-200 rounded-xl shadow-lg p-6 mb-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="bg-white
@@ -47,7 +47,7 @@ export default function UserWelcome() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setShowNotifications(true)}
-              className="p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors relative"
+              className="p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors relative"
             >
               <Bell className="h-6 w-6" />
               {unreadCount > 0 && (
@@ -58,7 +58,7 @@ export default function UserWelcome() {
             </button>
             <button
               onClick={() => setShowSettings(true)}
-              className="p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
             >
               <Settings className="h-6 w-6" />
             </button>

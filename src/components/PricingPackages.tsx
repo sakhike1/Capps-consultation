@@ -9,7 +9,7 @@ export default function PricingPackages() {
   const packages = [
     {
       name: 'Basic',
-      price: 999,
+      price: 8000,
       features: [
         'UI/UX Design Consultation',
         'Basic Frontend Development',
@@ -20,7 +20,7 @@ export default function PricingPackages() {
     },
     {
       name: 'Professional',
-      price: 1999,
+      price: 50000,
       features: [
         'Advanced UI/UX Design',
         'Full Frontend Development',
@@ -33,7 +33,7 @@ export default function PricingPackages() {
     },
     {
       name: 'Enterprise',
-      price: 4999,
+      price: 150000,
       features: [
         'Complete Design System',
         'Full-Stack Development',
@@ -50,7 +50,7 @@ export default function PricingPackages() {
   const handlePackageSelect = (pkg: typeof packages[0]) => {
     addNotification({
       title: 'Payment Required',
-      message: `Please complete the payment for ${pkg.name} package ($${pkg.price})`,
+      message: `Please complete the payment for ${pkg.name} package (R${pkg.price})`,
       type: 'billing'
     });
   };
@@ -77,7 +77,7 @@ export default function PricingPackages() {
             )}
             <h3 className="text-xl text-black font-bold mb-2">{pkg.name}</h3>
             <div className="mb-4">
-              <span className="text-3xl text-black font-bold">${pkg.price}</span>
+              <span className="text-3xl text-black font-bold">R{pkg.price}</span>
               <span className={pkg.popular ? 'text-black' : 'text-gray-500'}>
                 /project
               </span>

@@ -7,7 +7,6 @@ import HeroSection6 from "../sections/HeroSection6";
 import HeroSection7 from "../sections/HeroSection7";
 import HeroSection8 from "../sections/HeroSection8";
 import HeroSection9 from "../sections/HeroSection9";
-import Scrollup from "../sections/Scrollup";
 import {Subscribe} from "./../sections/Subscribe";
 import Testimonials from "../components/Testimonials";
 import Workedwith from "../components/Workedwith";
@@ -49,9 +48,7 @@ const Home = () => {
                 <Testimonials />
             </section>
 
-            <section className="">
-                <Scrollup />
-            </section>
+           
             <section className="-mt-[300px] ">
                 <Workedwith />
             </section>

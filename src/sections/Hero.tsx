@@ -91,7 +91,7 @@ const HeroSection7 = () => {
                     <div>
                         <Link to="/about">
                         <motion.a
-                            className="block hover:shadow-2xl lg:inline-block px-5 py-3 lg:mr-3 mb-3 lg:mb-0 text-sm text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white font-semibold rounded transition duration-200"
+                            className="block hover:shadow-2xl lg:inline-block px-5 py-3 lg:mr-3 mb-3 lg:mb-0 text-sm text-center bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 hover:bg-black text-white font-semibold rounded-full transition duration-200"
                             href="#"
                             whileHover={{
                                 scale: 1.1,
@@ -105,7 +105,7 @@ const HeroSection7 = () => {
                         </Link>
                         <Link to="/web-apps">
                         <motion.a
-                            className="block hover:shadow-2xl lg:inline-block px-5 py-3 text-sm text-center font-semibold text-black hover:text-black border border-gray-700 hover:border-gray-700 rounded transition duration-200"
+                            className="block hover:shadow-2xl lg:inline-block px-5 py-3 text-sm text-center font-semibold text-black hover:text-black border border-gray-700 hover:border-gray-700 rounded-full transition duration-200"
                             href="#"
                             whileHover={{
                                 scale: 1.1,
